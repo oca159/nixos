@@ -1,0 +1,12 @@
+[tools]
+bun = "latest"
+go = "latest"
+node = "22"
+python = "3.13"
+ruby = "latest"
+
+[settings]
+experimental = true
+all_compile = false
+ruby.compile = false
+idiomatic_version_file_enable_tools = ["python"]
