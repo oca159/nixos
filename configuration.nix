@@ -95,6 +95,7 @@
   environment.systemPackages = with pkgs; [
     autossh
     bottom
+    statix
     btop
     clang
     cmake
@@ -112,6 +113,7 @@
     pinentry-gnome3
     ipfetch
     nix-ld
+    nil
     nss
     openssl
     python3
@@ -123,7 +125,7 @@
     wget
     xdg-utils
     zlib
-    # nix_ls
+    nixfmt
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

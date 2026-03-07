@@ -23,6 +23,7 @@ in
   ];
 
   catppuccin.enable = true;
+  catppuccin.flavor = "mocha";
 
   home.sessionVariables = {
     EDITOR = "nvim";
