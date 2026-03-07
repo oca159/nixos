@@ -87,7 +87,7 @@ config.font = wezterm.font("BlexMono Nerd Font Mono", { weight = "Medium", itali
 config.font_size = 14
 config.hide_tab_bar_if_only_one_tab = false
 config.line_height = 1.1
-config.window_decorations = "RESIZE"
+config.window_decorations = "NONE"
 -- https://wezfurlong.org/wezterm/config/lua/config/window_padding.html
 config.window_padding = {
   left = 0,

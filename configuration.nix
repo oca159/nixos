@@ -5,10 +5,10 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -65,20 +65,37 @@
   users.users.osvaldo = {
     isNormalUser = true;
     description = "Osvaldo Cordova Aburto";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     shell = pkgs.zsh;
     packages = with pkgs; [
-      telegram-desktop
-      slack
       awscli2
+      bat
       brave
-      mise
-      uv
-      luajit
-      lazygit
-      lazydocker
       docker
       docker-compose
+      eza
+      fd
+      fzf
+      jq
+      just
+      lazydocker
+      lazygit
+      luajit
+      mise
+      neovim
+      opencode
+      postman
+      ripgrep
+      slack
+      spotify
+      telegram-desktop
+      tree-sitter
+      uv
+      zoxide
+      zsh
     ];
   };
 
@@ -95,7 +112,6 @@
   environment.systemPackages = with pkgs; [
     autossh
     bottom
-    statix
     btop
     clang
     cmake
@@ -109,15 +125,17 @@
     gnupg
     htop
     icu
-    pinentry-curses
-    pinentry-gnome3
     ipfetch
-    nix-ld
     nil
+    nix-ld
+    nixfmt
     nss
     openssl
+    pinentry-curses
+    pinentry-gnome3
     python3
     ramfetch
+    statix
     stdenv.cc.cc
     tree
     usbutils
@@ -125,7 +143,6 @@
     wget
     xdg-utils
     zlib
-    nixfmt
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -167,6 +184,9 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.11"; # Did you read the comment?
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
 }
