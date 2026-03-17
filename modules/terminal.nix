@@ -16,7 +16,6 @@
       clang
       cmake
       cmatrix
-      cool-retro-term
       cpufetch
       curl
       delta
@@ -27,7 +26,6 @@
       figlet
       file
       fuse3
-      fzf
       fzf
       gcc
       gnumake
@@ -45,7 +43,6 @@
       mise
       moreutils
       neovim
-      neovim
       nil
       nix-ld
       nixfmt
@@ -56,6 +53,9 @@
       pinentry-curses
       pinentry-gnome3
       python3
+      ghostty
+      tmux
+      sesh
       ramfetch
       readline
       ripgrep

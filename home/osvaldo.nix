@@ -47,8 +47,12 @@ in
       "video-out" = [ ];
     };
 
-    "org.gnome.mutter" = {
+    "org/gnome/mutter" = {
       "overlay-key" = "";
+    };
+
+    "org/gnome/shell" = {
+      "enabled-extensions" = [ "hidetopbar@mathieu.bidon.ca" ];
     };
   };
 
