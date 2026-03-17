@@ -1,19 +1,56 @@
 { config, pkgs, ... }:
 let
-    dotfiles = "${config.home.homeDirectory}/dotfiles/config";
-    create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
-    # Standard .config/directory
-    configs = {
-        nvim = "nvim";
-        mise = "mise";
-        wezterm = "wezterm";
-    };
+  dotfiles = "${config.home.homeDirectory}/dotfiles/config";
+  create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
+  # Standard .config/directory
+  configs = {
+    nvim = "nvim";
+    mise = "mise";
+    wezterm = "wezterm";
+  };
 in
 {
   home.username = "osvaldo";
   home.homeDirectory = "/home/osvaldo";
   home.stateVersion = "25.11";
   programs.home-manager.enable = true;
+
+  dconf.settings = {
+    "org/gnome/shell/keybindings" = {
+      "switch-to-application-1" = [ ];
+      "switch-to-application-2" = [ ];
+      "switch-to-application-3" = [ ];
+      "switch-to-application-4" = [ ];
+      "switch-to-application-5" = [ ];
+      "switch-to-application-6" = [ ];
+      "switch-to-application-7" = [ ];
+      "switch-to-application-8" = [ ];
+      "switch-to-application-9" = [ ];
+      "toggle-message-tray" = [ ];
+      "toggle-application-view" = [ "<Super>a" ];
+      "toggle-overview" = [ "<Super>space" ];
+    };
+
+    "org/gnome/mutter/keybindings" = {
+      "switch-monitor" = [ ];
+    };
+
+    # Disable Super+H (Hide window) and Super+V (Notifications)
+    "org/gnome/desktop/wm/keybindings" = {
+      "minimize" = [ ];
+      "focus-active-notification" = [ ];
+      "switch-input-source" = [ ];
+    };
+
+    # Some versions of GNOME use this for Super+P as well
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      "video-out" = [ ];
+    };
+
+    "org.gnome.mutter" = {
+      "overlay-key" = "";
+    };
+  };
 
   home.sessionPath = [
     "$HOME/.local/bin"
@@ -55,9 +92,15 @@ in
     settings.user.name = "Osvaldo Cordova Aburto";
     settings.user.email = "ocordova@pulsarml.com";
     settings.init.defaultBranch = "main";
-    settings.pull = { rebase = true; };
-    settings.push = { autoSetupRemote = true; };
-    settings.commit = { gpgsign = true; };
+    settings.pull = {
+      rebase = true;
+    };
+    settings.push = {
+      autoSetupRemote = true;
+    };
+    settings.commit = {
+      gpgsign = true;
+    };
   };
 
   programs.zsh = {
@@ -68,7 +111,10 @@ in
     oh-my-zsh = {
       enable = true;
       theme = "robbyrussell";
-      plugins = [ "git" "fzf" ];
+      plugins = [
+        "git"
+        "fzf"
+      ];
     };
     shellAliases = {
       cat = "bat";
@@ -78,13 +124,20 @@ in
       lt = "eza --tree --level=2 --long --icons --git";
       lta = "lt -a";
 
-      "atik-dev" = "autossh -M 0 -o 'ServerAliveInterval 30' -o 'ServerAliveCountMax 3' -L 5432:atik-metrics-dev.ckjtmazbtg4w.us-west-2.rds.amazonaws.com:5432 -N bastion";
-      "atik-prod" = "autossh -M 0 -o 'ServerAliveInterval 30' -o 'ServerAliveCountMax 3' -L 5432:atik-metrics-prod.ckjtmazbtg4w.us-west-2.rds.amazonaws.com:5432 -N bastion";
-      "pulsar-dev" = "autossh -M 0 -o 'ServerAliveInterval 30' -o 'ServerAliveCountMax 3' -L 3300:pulsarrdsdbdev.ckjtmazbtg4w.us-west-2.rds.amazonaws.com:3306 -N bastion";
-      "pulsar-prod" = "autossh -M 0 -o 'ServerAliveInterval 30' -o 'ServerAliveCountMax 3' -L 3300:pulsarrdsdbprod.ckjtmazbtg4w.us-west-2.rds.amazonaws.com:3306 -N bastion";
-      "pulsar-stage" = "autossh -M 0 -o 'ServerAliveInterval 30' -o 'ServerAliveCountMax 3' -L 3300:pulsarrdsdbstage.ckjtmazbtg4w.us-west-2.rds.amazonaws.com:3306 -N bastion";
-      "pulsargpt-dev" = "autossh -M 0 -o 'ServerAliveInterval 30' -o 'ServerAliveCountMax 3' -L 3300:pulsargpt-dev.ckjtmazbtg4w.us-west-2.rds.amazonaws.com:3306 -N bastion";
-      "pulsargpt-prod" = "autossh -M 0 -o 'ServerAliveInterval 30' -o 'ServerAliveCountMax 3' -L 3300:pulsargpt-prod.ckjtmazbtg4w.us-west-2.rds.amazonaws.com:3306 -N bastion";
+      "atik-dev" =
+        "autossh -M 0 -o 'ServerAliveInterval 30' -o 'ServerAliveCountMax 3' -L 5432:atik-metrics-dev.ckjtmazbtg4w.us-west-2.rds.amazonaws.com:5432 -N bastion";
+      "atik-prod" =
+        "autossh -M 0 -o 'ServerAliveInterval 30' -o 'ServerAliveCountMax 3' -L 5432:atik-metrics-prod.ckjtmazbtg4w.us-west-2.rds.amazonaws.com:5432 -N bastion";
+      "pulsar-dev" =
+        "autossh -M 0 -o 'ServerAliveInterval 30' -o 'ServerAliveCountMax 3' -L 3300:pulsarrdsdbdev.ckjtmazbtg4w.us-west-2.rds.amazonaws.com:3306 -N bastion";
+      "pulsar-prod" =
+        "autossh -M 0 -o 'ServerAliveInterval 30' -o 'ServerAliveCountMax 3' -L 3300:pulsarrdsdbprod.ckjtmazbtg4w.us-west-2.rds.amazonaws.com:3306 -N bastion";
+      "pulsar-stage" =
+        "autossh -M 0 -o 'ServerAliveInterval 30' -o 'ServerAliveCountMax 3' -L 3300:pulsarrdsdbstage.ckjtmazbtg4w.us-west-2.rds.amazonaws.com:3306 -N bastion";
+      "pulsargpt-dev" =
+        "autossh -M 0 -o 'ServerAliveInterval 30' -o 'ServerAliveCountMax 3' -L 3300:pulsargpt-dev.ckjtmazbtg4w.us-west-2.rds.amazonaws.com:3306 -N bastion";
+      "pulsargpt-prod" =
+        "autossh -M 0 -o 'ServerAliveInterval 30' -o 'ServerAliveCountMax 3' -L 3300:pulsargpt-prod.ckjtmazbtg4w.us-west-2.rds.amazonaws.com:3306 -N bastion";
       chronos = "autossh -M 0 -o 'ServerAliveInterval 30' -o 'ServerAliveCountMax 3' -L 54322:chronos-demo-orchestrator-prod-orchestrator-db.ckjtmazbtg4w.us-west-2.rds.amazonaws.com:5432 -N bastion";
     };
 
@@ -129,7 +182,7 @@ in
   };
 
   xdg.configFile = builtins.mapAttrs (name: subpath: {
-      source = create_symlink "${dotfiles}/${subpath}";
-      recursive = true;
+    source = create_symlink "${dotfiles}/${subpath}";
+    recursive = true;
   }) configs;
 }

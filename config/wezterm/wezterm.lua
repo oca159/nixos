@@ -129,12 +129,12 @@ local keys = {
     action = act.SpawnTab("CurrentPaneDomain"),
   },
   {
-    key = "|",
+    key = "v",
     mods = "CMD",
     action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
   },
   {
-    key = "-",
+    key = "h",
     mods = "CMD",
     action = act.SplitVertical({ domain = "CurrentPaneDomain" }),
   },

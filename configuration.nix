@@ -112,6 +112,7 @@
   environment.systemPackages = with pkgs; [
     autossh
     bottom
+    binutils
     btop
     clang
     cmake
@@ -121,6 +122,10 @@
     fastfetch
     fuse3
     gcc
+    readline
+    libffi
+    libyaml
+    patch
     gnumake
     gnupg
     htop
