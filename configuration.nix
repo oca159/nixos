@@ -71,31 +71,13 @@
     ];
     shell = pkgs.zsh;
     packages = with pkgs; [
-      awscli2
-      bat
       brave
       docker
       docker-compose
-      eza
-      fd
-      fzf
-      jq
-      just
-      lazydocker
-      lazygit
-      luajit
-      mise
-      neovim
-      opencode
       postman
-      ripgrep
       slack
       spotify
       telegram-desktop
-      tree-sitter
-      uv
-      zoxide
-      zsh
     ];
   };
 
@@ -110,44 +92,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    autossh
-    bottom
-    binutils
-    btop
-    clang
-    cmake
-    cpufetch
-    curl
-    expat
-    fastfetch
-    fuse3
-    gcc
-    readline
-    libffi
-    libyaml
-    patch
-    gnumake
-    gnupg
-    htop
-    icu
-    ipfetch
-    nil
-    nix-ld
-    nixfmt
-    nss
-    openssl
-    pinentry-curses
-    pinentry-gnome3
-    python3
-    ramfetch
-    statix
-    stdenv.cc.cc
-    tree
-    usbutils
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    xdg-utils
-    zlib
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
